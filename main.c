@@ -9,6 +9,7 @@
 #include <stdbool.h> 
 #include <stdio.h>
 #include <sys/time.h>
+#include <omp.h>
 // #include <stdlib.h>
 // #include <pthread.h>
 // #include <unistd.h>
@@ -34,10 +35,14 @@ bool validity_check(struct board_zone zone2check);
 bool is_valid_row(int row);
 bool is_valid_col(int col);
 bool is_valid_box(zone zone2check);
-void routineA(long int reps);
+void routineA(long int iterations);
+void routineB(long int iterations);
 
 int main(int argc, char* argv[]){
-    routineA(1000);
+    printf("Ciclo sin threads: \n");
+    routineA(1000000);
+    printf("\n Ciclo con threads en OpenMP: \n");
+    routineB(1000000);
     return 0;
     
 }
@@ -109,27 +114,88 @@ bool is_valid_box(zone zone2check){
     }
     return true;
 }
+void restart_check_arrays(){
+    int i;
+    for (i = 0; i < 9; i++)
+    {
+        rows_checked[i] = 0;
+        cols_checked[i] = 0;
+        sub_grids_checked[i] = 0;
+    }
+}
 
-void routineA(long int reps){
+bool get_result(){
+    bool result = true;
+    int i;
+    for(i=0; i<9; i++){
+        result = result && rows_checked[i];
+        result = result && cols_checked[i];
+        result = result && sub_grids_checked[i];
+    }
+    return result;
+}
+
+void routineA(long int iterations){
     struct timeval tv1, tv2;
-    gettimeofday(&tv1, NULL);
+    double sum = 0;
+    
     int j;
-    for(j=0; j<reps; j++){
+    for(j=0; j<iterations; j++)
+    {
+        gettimeofday(&tv1, NULL);
         bool result = true;
-        for (int i = 0; i < 9; i++){
+        for (int i = 0; i < 9; i++)
+        {
             zone row = get_row_by_pos(i);
-            result = result && validity_check(row);
+            rows_checked[i] = validity_check(row);
 
             zone col = get_col_by_pos(i);
-            result = result && validity_check(col);
+            cols_checked[i] = validity_check(col);
             
             zone box = get_box_by_pos(i);
-            result = result && validity_check(box);
+            sub_grids_checked[i] = validity_check(box);
         }
-        //printf(result?"true\n":"false\n");
+        gettimeofday(&tv2, NULL);
+        double time = ((double) (tv2.tv_usec - tv1.tv_usec) / 1000000.0 +
+                       (double) (tv2.tv_sec - tv1.tv_sec));
+        sum += time;
+        restart_check_arrays();
     }
-    gettimeofday(&tv2, NULL);
-    double mean_time = ((double) (tv2.tv_usec - tv1.tv_usec) / 1000000.0 +
+    
+    double mean_time_sec = sum /((double)iterations);
+    printf ("Time = %f [us]\n", mean_time_sec*1000000);
+}
+
+void routineB(long int iterations){
+    struct timeval tv1, tv2;
+    double sum = 0;
+    
+    int j;
+    for(j=0; j<iterations; j++){
+        gettimeofday(&tv1, NULL);
+        #pragma omp parallel
+        {
+            #pragma omp for
+            for (int i = 0; i < 9; i++)
+            {
+                zone row = get_row_by_pos(i);
+                rows_checked[i] = validity_check(row);
+
+                zone col = get_col_by_pos(i);
+                cols_checked[i] = validity_check(col);
+                
+                zone box = get_box_by_pos(i);
+                sub_grids_checked[i] = validity_check(box);
+
+                if(get_result) gettimeofday(&tv2, NULL);
+            }
+        }
+        double time = ((double) (tv2.tv_usec - tv1.tv_usec) / 1000000.0 +
                                (double) (tv2.tv_sec - tv1.tv_sec));
-    printf ("Time = %f sec\n", mean_time);
+        sum += time;
+        restart_check_arrays();
+    }
+    
+    double mean_time_sec = sum /((double)iterations);
+    printf ("Time = %f [us]\n", mean_time_sec*1000000);
 }
