@@ -4,9 +4,9 @@ Integrantes:
 -Cristian Herrera Leizgold 201621049-0 cristian.herreral@sansano.usm.cl
 
 ## Tarea 2: Manejo de hilos
-## Parte A y B
-
 En esta tarea se exploran y evalúan distintas herramientas para generar hilos para una tarea, y además se comparan con la versión del mismo programa sin hilos. La tarea a efectuar es *checkear* la validez de un tablero de sudoku dado.
+## Parte A y B
+En esta sección se chequea el sudoku y evalua el rendimiento de los codigos de la parte A (sin threads) y B (con threads OpenMP).
 
 ### Para compilar...
 
@@ -29,7 +29,7 @@ En esta tarea se exploran y evalúan distintas herramientas para generar hilos p
 <br/>
 
 ## Parte C 
-
+En esta sección se chequea el sudoku y evalua el rendimiento deL codigo de la parte C (con threads POSIX).
 
 ### Para compilar...
 
