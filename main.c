@@ -3,7 +3,7 @@
 * @author : Luciano  Flores  Castillo
             Cristian Herrera Leizgold
 * @date :   8/11/2020
-* @brief :  Código para la parte A de la tarea 2 en ELO 321, semestre 2020-2
+* @brief :  Código para la tarea 2 de ELO 321, semestre 2020-2
 */
 
 #include <stdbool.h> 
@@ -39,10 +39,15 @@ void routineA(long int iterations);
 void routineB(long int iterations);
 
 int main(int argc, char* argv[]){
+    int iterations;
+    if (argc > 1 )
+        iterations = atoi(argv[1]);
+    else
+        iterations = 10000000;
     printf("Ciclo sin threads: \n");
-    routineA(1000000);
+    routineA(10000000);
     printf("\n Ciclo con threads en OpenMP: \n");
-    routineB(1000000);
+    routineB(10000000);
     return 0;
     
 }
