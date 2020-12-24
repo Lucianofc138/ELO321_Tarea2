@@ -189,7 +189,7 @@ int main(int argc, char *argv[])
 	else {
 		printf("No es una solucion de sudoku factible\n");
 	}
-    printf("La comprobacion de la solucion del sudoku mediante threads demora %f micro segundos\n",mean_time_sec*1000000);
+    printf("La comprobacion de la solucion del sudoku mediante threads POSIX demora %f [us]\n",mean_time_sec*1000000);
 }
 
 /* Los threads van a ejecutar las siguientes 3 funciones dependiendo el caso */
