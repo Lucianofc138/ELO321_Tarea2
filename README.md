@@ -1,8 +1,10 @@
 # ELO 321 (Sistemas Operativos) 2020 S2
-Integrantes: Luciano Flores Castillo 201621023-7 luciano.flores@sansano.usm.cl
-Cristian Herrera Leizgold 201621049-0 cristian.herreral@sansano.usm.cl
+Integrantes: 
+-Luciano Flores Castillo 201621023-7 luciano.flores@sansano.usm.cl
+-Cristian Herrera Leizgold 201621049-0 cristian.herreral@sansano.usm.cl
 
 ## Tarea 2: Manejo de hilos
+## Parte A y B
 
 En esta tarea se exploran y evalúan distintas herramientas para generar hilos para una tarea, y además se comparan con la versión del mismo programa sin hilos. La tarea a efectuar es *checkear* la validez de un tablero de sudoku dado.
 
@@ -25,4 +27,19 @@ En esta tarea se exploran y evalúan distintas herramientas para generar hilos p
 <img src="img/demo_aragorn_1.jpg" width="500">
 
 <br/>
+
+## Parte C 
+
+
+### Para compilar...
+
+```C
+    gcc Tarea2C.c -o tarea2C_exec -pthread
+```
+
+### Para correr
+
+```C
+    ./tarea2C_exec numero_iteraciones
+```
 
