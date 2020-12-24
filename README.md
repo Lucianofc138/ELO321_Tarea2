@@ -11,13 +11,13 @@ En esta sección se chequea el sudoku y evalua el rendimiento de los codigos de 
 ### Para compilar...
 
 ```C
-    gcc -o tarea2_exec -fopenmp main.c sudokuUtils.h
+    gcc -o tarea2AB_exec -fopenmp Tarea2AB.c sudokuUtils.h
 ```
 
 ### Para correr
 
 ```C
-    ./tarea2_exec numero_iteraciones
+    ./tarea2AB_exec numero_iteraciones
 ```
 - El numero de iteraciones es para repetir varias veces cada implementación (con o sin hilos) y así calcular un promedio para tener un dato más representativo del conjunto
 - Si no se elige un numero de iteraciones será 10000 por defecto
@@ -34,7 +34,7 @@ En esta sección se chequea el sudoku y evalua el rendimiento deL codigo de la p
 ### Para compilar...
 
 ```C
-    gcc Tarea2C.c -o tarea2C_exec -pthread
+    gcc -o tarea2C_exec -pthread Tarea2C.c 
 ```
 
 ### Para correr
