@@ -1,3 +1,11 @@
+/*
+* @file : "Tarea2C.c"
+* @author : Luciano  Flores   Catillo
+            Cristian Herrera Leizgold
+* @date : 8/11/2020
+* @brief : Codigo de la parte C de la Tarea 2 de ELO 321, semestre 2020-2			
+*/
+
 #include <pthread.h>
 #include <stdio.h>
 #include <stdlib.h>
