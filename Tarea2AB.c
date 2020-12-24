@@ -1,9 +1,9 @@
 /*
-* @file :   "sudokuSinThreads.c"
+* @file :   "Tarea2AB.c"
 * @author : Luciano  Flores  Castillo
             Cristian Herrera Leizgold
 * @date :   8/11/2020
-* @brief :  Código para la tarea 2 de ELO 321, semestre 2020-2
+* @brief :  Codigo para la parte A y B de la tarea 2 de ELO 321, semestre 2020-2
 */
 
 #include <stdbool.h> 
