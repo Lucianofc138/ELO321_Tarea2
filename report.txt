@@ -1,10 +1,24 @@
+
 Para la parte B (hilos en OpenMP) se tuvieron resultados peores que sin hilos.
 Esto es en parte porque la tarea no fue optimizada para trabajar con hilos, además
 de que el overhead de crear y administrar estos hilos supera a la mejora propor-
 cionada por los mismos.
 
-Probando la misma API pero aplicando la implementación del for on hilos para el for
+Probando la misma API pero aplicando la implementación del for con hilos para el for
 que hace las iteraciones para calcular el tiempo promedio se ve una gran mejora, por
 lo que sí se puede ver que para otro tipo de problemas de mayor complejidad algo-
 ritmica, o bien para tareas planificadas para ejecutarse en hilo se tiene una mejora
 considerable.
+
+
+Para la parte C (hilos en POSIX) se tuvieron resultados mucho peores que en las imple-
+mentaciones anteriores.
+Esto al igual que el caso de la parte B, se produce en parte porque la tarea no fue 
+optimizada para trabajar con hilos, donde el overhead de crear y administrar estos hilos
+supera a la mejora proporcionada por los mismos. Además la gran diferencia en el orden 
+de magnitud del tiempo de esta implementación en comparación con las anteriores se debería 
+a que la implementación escogida para resolver el problema es muy poco eficiente.
+
+Probando la misma API pero aplicando la implementación del for con hilos para el for
+que hace las iteraciones para calcular el tiempo promedio se ve que tiempo promedio es 
+del orden de magnitud de 100[us].
