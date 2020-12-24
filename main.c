@@ -43,11 +43,11 @@ int main(int argc, char* argv[]){
     if (argc > 1 )
         iterations = atoi(argv[1]);
     else
-        iterations = 10000000;
+        iterations = 10000;
     printf("Ciclo sin threads: \n");
-    routineA(10000000);
+    routineA(iterations);
     printf("\n Ciclo con threads en OpenMP: \n");
-    routineB(10000000);
+    routineB(iterations);
     return 0;
     
 }
@@ -149,7 +149,8 @@ void routineA(long int iterations){
     {
         gettimeofday(&tv1, NULL);
         bool result = true;
-        for (int i = 0; i < 9; i++)
+        int i;
+        for (i = 0; i < 9; i++)
         {
             zone row = get_row_by_pos(i);
             rows_checked[i] = validity_check(row);
@@ -180,8 +181,9 @@ void routineB(long int iterations){
         gettimeofday(&tv1, NULL);
         #pragma omp parallel
         {
+            int i;
             #pragma omp for
-            for (int i = 0; i < 9; i++)
+            for (i = 0; i < 9; i++)
             {
                 zone row = get_row_by_pos(i);
                 rows_checked[i] = validity_check(row);

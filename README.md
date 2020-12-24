@@ -19,3 +19,10 @@ En esta tarea se exploran y evalúan distintas herramientas para generar hilos p
 ```
 - El numero de iteraciones es para repetir varias veces cada implementación (con o sin hilos) y así calcular un promedio para tener un dato más representativo del conjunto
 - Si no se elige un numero de iteraciones será 10000 por defecto
+
+### Demostraciones
+
+<img src="img/demo_aragorn_1.jpg" width="500">
+
+<br/>
+
